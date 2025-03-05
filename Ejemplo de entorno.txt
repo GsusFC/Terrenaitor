@@ -1,0 +1,23 @@
+# Configuración del servidor
+PORT=3000
+NODE_ENV=development
+
+# Configuración de base de datos
+MONGODB_URI=mongodb://localhost:27017/terrenaitor
+
+# Cloudinary (para almacenamiento de imágenes)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Vercel (para despliegue)
+VERCEL_TOKEN=your_vercel_token
+VERCEL_TEAM_ID=your_team_id
+
+# Configuración de la aplicación
+DEFAULT_IMAGE_URL=https://placehold.co/1200x630
+MAX_UPLOAD_SIZE=5 # En MB
+MAX_BUTTONS=4
+
+# Claves de API opcionales
+NEYNAR_API_KEY=your_neynar_api_key # Para integración con Farcaster
