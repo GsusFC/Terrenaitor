@@ -1,0 +1,78 @@
+erDiagram
+    USERS {
+        string id PK
+        string email
+        string password_hash
+        string name
+        date created_at
+        date updated_at
+        string subscription_tier
+    }
+    
+    FRAMES {
+        string id PK
+        string user_id FK
+        string title
+        string description
+        string frame_type
+        string status
+        date created_at
+        date updated_at
+    }
+    
+    FRAME_VERSIONS {
+        string id PK
+        string frame_id FK
+        string html_content
+        string handler_code
+        string version_number
+        date created_at
+    }
+    
+    FRAME_ASSETS {
+        string id PK
+        string frame_id FK
+        string asset_type
+        string url
+        string local_path
+        int width
+        int height
+        date created_at
+    }
+    
+    FRAME_BUTTONS {
+        string id PK
+        string frame_id FK
+        int position
+        string label
+        string action_type
+        string target_url
+        string post_url
+    }
+    
+    DEPLOYMENTS {
+        string id PK
+        string frame_id FK
+        string platform
+        string deployment_url
+        string status
+        date deployed_at
+        date expires_at
+    }
+    
+    ANALYTICS {
+        string id PK
+        string frame_id FK
+        int views
+        int interactions
+        int clicks
+        json button_metrics
+        date date
+    }
+    
+    USERS ||--o{ FRAMES : creates
+    FRAMES ||--o{ FRAME_VERSIONS : has
+    FRAMES ||--o{ FRAME_ASSETS : contains
+    FRAMES ||--o{ FRAME_BUTTONS : includes
+    FRAMES ||--o{ DEPLOYMENTS : deploys
+    FRAMES ||--o{ ANALYTICS : tracks

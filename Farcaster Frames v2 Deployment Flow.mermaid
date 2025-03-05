@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant U as Usuario
+    participant FB as FrameBuilder
+    participant CS as CloudStorage
+    participant DP as DeployProvider
+    participant FC as Farcaster
+    
+    U->>FB: Ingresar URL/App
+    FB->>FB: Analizar contenido
+    FB->>CS: Almacenar imágenes
+    FB->>FB: Generar código Frame
+    FB->>U: Mostrar previsualización
+    
+    U->>FB: Personalizar y confirmar
+    FB->>CS: Almacenar versión final
+    
+    alt Despliegue a Vercel/Netlify
+        FB->>DP: Iniciar despliegue
+        DP->>DP: Construir aplicación
+        DP->>FB: Devolver URL de despliegue
+        FB->>U: Mostrar URL final
+    else Descarga de código
+        FB->>FB: Generar paquete ZIP
+        FB->>U: Descargar código
+    end
+    
+    U->>FC: Compartir Frame en Warpcast
+    FC->>DP: Consultar frame.html
+    DP->>FC: Devolver meta tags
+    FC->>U: Mostrar Frame interactivo
